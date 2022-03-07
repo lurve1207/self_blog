@@ -1,0 +1,54 @@
+html{
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+/* header, main背景样式 */
+.light {
+  background: #eee !important;
+  color: black ;
+}
+
+.light-sec {
+  background: #fff !important;
+  color: black ;  
+}
+.light-sec i { 
+  color: black !important;  
+}
+
+/* =============== */
+.dark {
+  background: #171d20 !important
+}
+
+.dark-sec {
+  background: #2f3133 !important;
+  color: white ;
+  border: 1px solid #2f3133 !important;
+}
+
+.dark-sec i { 
+  color: white ;
+}
+
+.dark-sec .about i,
+.light-sec .about i { 
+  color: gray !important;  
+}
+
+.middle{
+  background-color: #2f3133;
+  border: 1px solid #2f3133;
+  color: white;
+}
+
+.cell {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+
+
+
