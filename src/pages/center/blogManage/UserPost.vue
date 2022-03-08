@@ -227,7 +227,7 @@ export default {
         // this.$message.success({ message: "权限满足", showClose: true });
         return { formData, token: response.data.data };
       } else {
-        this.$message.error("没有上传图片的权限");
+        this.$message.error({ showClose: true, message: "没有上传图片的权限" });
         // 清除图片***************
         // 清除图片***************
         // 清除图片***************
@@ -241,7 +241,7 @@ export default {
         const url = "http://" + this.qiniuaddr + "/" + result.data.key; //图片的访问地址
         this.$refs.mavon_editor.$img2Url(pos, url); //很重要，将 ![图片名](pos) 替换成 ![图片名](url)
       } else {
-        this.$message.error("图片上传失败");
+        this.$message.error({ showClose: true, message: "图片上传失败" });
       }
     },
     //博客封面的图片管理**********************
@@ -273,9 +273,9 @@ export default {
       if (result.status == 200) {
         const url = "http://" + this.qiniuaddr + "/" + result.data.key; //图片的访问地址
         this.coverImg_info.url = url;
-        this.$message.success("封面上传成功");
+        this.$message.success({ showClose: true, message: "封面上传成功" });
       } else {
-        this.$message.error("封面上传失败");
+        this.$message.error({ showClose: true, message: "封面上传失败" });
       }
     },
     async handleCoverSuccess(res, file) {
@@ -293,9 +293,9 @@ export default {
       if (result.data.status == 0) {
         this.article.title = this.$store.state.blogAbout.userDraft.title;
         this.article.content = this.$store.state.blogAbout.userDraft.content;
-        this.$message.success("获取成功");
+        this.$message.success({ showClose: true, message: "获取草稿成功" });
       } else {
-        this.$message.error(result.data.message);
+        this.$message.error({ showClose: true, message: result.data.message });
       }
     },
     async saveArticle() {
@@ -306,16 +306,14 @@ export default {
         state: "草稿",
       });
       if (result.data.status == 0) {
-        this.$message({
+        this.$message.success({
           message: result.data.message,
-          type: "success",
           showClose: true,
         });
         this.$store.dispatch("getDraft");
       } else {
-        this.$message({
+        this.$message.warning({
           message: result.data.message,
-          type: "warning",
           showClose: true,
         });
       }
@@ -336,7 +334,10 @@ export default {
           tag_ids = tag_ids.join(",");
           // 判断封面是否上传了
           if (this.article.share_state == "") {
-            return this.$message.error("版权状态是必需的");
+            return this.$message.error({
+              showClose: true,
+              message: "版权状态是必需的",
+            });
           }
           if (this.article.cover_img !== "") {
             let result = await this.$store.dispatch("postArticle", {
@@ -344,12 +345,18 @@ export default {
               tag_ids,
             });
             if (result.data.status == 0) {
-              this.$message.success(result.data.message);
+              this.$message.success({
+                showClose: true,
+                message: result.data.message,
+              });
             } else {
-              this.$message.error(result.data.message);
+              this.$message.error({
+                showClose: true,
+                message: result.data.message,
+              });
             }
           } else {
-            this.$message.error("封面是必需的");
+            this.$message.error({ showClose: true, message: "封面是必需的" });
           }
         } else {
           console.log("error submit!!");

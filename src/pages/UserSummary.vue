@@ -44,7 +44,7 @@
                       : 'darkColor'
                   "
                 >
-                  <span>{{ blog.title }}</span>
+                  <span class="title">{{ blog.title }}</span>
                 </router-link>
                 <span class="tags">
                   <el-tag
@@ -146,6 +146,12 @@ export default {
       }
       .card {
         cursor: pointer;
+
+        .title {
+          &:hover {
+            color: orange;
+          }
+        }
         span {
           // color: white !important;
           margin-right: 10px;

@@ -14,8 +14,7 @@
       </el-col>
       <el-col :span="21" :xs="24">
         <el-menu
-          class="el-menu-demo nav"
-          mode="horizontal"
+          class="nav"
           background-color="rgba(0,0,0,0)"
           active-text-color="orange"
         >
@@ -113,7 +112,11 @@ export default {
             cb(blogList);
           }, 100);
         } else {
-          this.$message.error(result.data.message);
+          this.$message.error({
+            showClose: true,
+            message: result.data.message,
+            offset: 60,
+          });
         }
       }
     },
@@ -169,9 +172,6 @@ export default {
     float: right;
     max-width: 97px;
 
-    i {
-      color: white;
-    }
     .el-icon-sunny {
       font-size: 24px;
     }
@@ -192,6 +192,18 @@ export default {
       }
     }
   }
+
+  i {
+    color: white;
+  }
+
+  .is-active {
+    background-color: rgba(0, 0, 0, 0) !important;
+    i {
+      color: orange;
+    }
+  }
+
   .el-autocomplete {
     display: inline-block;
     width: 200px;

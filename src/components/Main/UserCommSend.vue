@@ -20,7 +20,7 @@
 <script>
 export default {
   name: "UserCommSend",
-  props: ["comm_box_key", "blog_id", "blog_title"],
+  props: ["comm_box_key", "blog_id", "blog_title", "blog_commentable"],
   data() {
     return {
       comm_content: "",
@@ -35,6 +35,8 @@ export default {
     async addComment() {
       if (this.$store.state.userAbout.isLogin !== true) {
         this.$message.info("需要登录才能发表评论哟！");
+      } else if (this.blog_commentable == 0) {
+        this.$message.info("文章主人未开启评论权限！");
       } else {
         if (this.comm_content.trim() !== "") {
           //判断是 评论文章 还是 回复评论

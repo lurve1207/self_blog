@@ -9,6 +9,7 @@ Vue.use(Vuex)
 const userAbout = {
     namespace: true,
     actions: {
+        // 获取是否点赞文章或者评论
         async findAbout(context, value) {
             let result
             if (value.type == 'art') {
@@ -24,11 +25,12 @@ const userAbout = {
                 return false
             }
         },
+        // 获取作者信息
         async getAuthor(context, value) {
             let result = await request.getAuthor(value)
             return result
-
         },
+        // 用户信息
         async getUserinfo(context) {
             let result = await request.getUserinfo()
             if (result.data.status == 0) {
@@ -50,10 +52,12 @@ const userAbout = {
             let result = await request.updatePwd(value)
             return result
         },
+        // 退出登录
         async log_out(context) {
             console.log('准备退出登录了');
             context.commit('LOG_OUT')
         },
+        // 存储token
         setToken(context, value) {
             context.commit('SET_TOKEN', value)
         }
@@ -78,8 +82,7 @@ const userAbout = {
         }
     },
     state: {
-        user: {
-        },
+        user: {},
         token: '',
         isLogin: false,
     }
@@ -88,6 +91,7 @@ const userAbout = {
 const blogAbout = {
     namespace: true,
     actions: {
+        // 根据id获取指定文章
         async getArticleById(context, value) {
             let result = await request.getArticleById(value)
             if (result.data.status == 0) {
@@ -95,9 +99,9 @@ const blogAbout = {
             }
             return result
         },
+        // 获取标签列表
         async getTagList(context) {
             let response = await request.getTagList()
-            // console.log('......', response);
             if (response.data.status == 0) {
                 let tags = response.data.data;
                 console.log("所有博客分类---", tags);
@@ -106,6 +110,7 @@ const blogAbout = {
                 return new Error('出错了')
             }
         },
+        // 获取文章列表
         async getBlogList(context, value) {
             if (value.isByTag) {
                 let response = await request.getBlogListByTag(value)
@@ -122,8 +127,7 @@ const blogAbout = {
                     }
                     else {
                         let blogs = response.data.data;
-                        console.log("已加载博客---", blogs);
-                        context.commit('INSERT_BLOGLIST', blogs)
+                        // context.commit('INSERT_BLOGLIST', blogs)
                         return blogs
                     }
                 }
@@ -132,6 +136,7 @@ const blogAbout = {
                 }
             }
         },
+        // 获取用户发布的文章列表
         async getUserblogs(context) {
             let response = await request.getUserBlogs()
             if (response.data.status == 0) {
@@ -142,6 +147,7 @@ const blogAbout = {
                 return []
             }
         },
+        // 获取用户点赞的文章列表
         async getUserlikes(context) {
             let response = await request.getUserlikes()
             if (response.data.status == 0) {
@@ -152,6 +158,7 @@ const blogAbout = {
                 return []
             }
         },
+        // 获取七牛云图片上传token
         async getImageUploadToken(context, value) {
             let response = await request.getImageUploadToken(value)
             return response
@@ -163,16 +170,9 @@ const blogAbout = {
             let result = await qiniu_requests.uploadImg(value)
             return result
         },
+        // 草稿保存与获取
         async saveArticle(context, value) {
             let result = await request.saveArticle(value)
-            return result
-        },
-        async postArticle(context, value) {
-            let result = await request.postArticle(value)
-            return result
-        },
-        async delArticle(context, value) {
-            let result = await request.delArticle(value)
             return result
         },
         async getDraft(context) {
@@ -182,6 +182,16 @@ const blogAbout = {
             }
             return result
         },
+        // 发布与删除文章
+        async postArticle(context, value) {
+            let result = await request.postArticle(value)
+            return result
+        },
+        async delArticle(context, value) {
+            let result = await request.delArticle(value)
+            return result
+        },
+        // 获取指定标签
         getTagNameById(context, value) {
             let name = ''
             context.state.tagList.forEach(tag => {
@@ -190,6 +200,7 @@ const blogAbout = {
             });
             return name
         },
+        // 喜欢文章或评论
         async likeArticle(context, value) {
             let result = await request.likeArticle(value)
             if (result.data.status == 0) {
@@ -204,6 +215,7 @@ const blogAbout = {
             let result = await request.likeComment(value)
             return result
         },
+        // 获取评论列表
         async getComment(context, value) {
             let result = await request.getComment(value)
             if (result.data.status == 0) {
@@ -211,6 +223,7 @@ const blogAbout = {
             }
             return result
         },
+        // 添加与删除评论
         async addComment(context, value) {
             let result = await request.addComment(value)
             return result
@@ -219,6 +232,7 @@ const blogAbout = {
             let result = await request.delComm(value)
             return result
         },
+        // 获取用户的评论列表
         async getUserComments(context, value) {
             let result = await request.getUserComments()
             if (result.data.status == 0) {
@@ -229,14 +243,12 @@ const blogAbout = {
                 return []
             }
         },
-        async getParentComm(context, value) {
-            let result = await request.getSingleComment(value)
-            return result
-        },
+        // 文章搜索
         async searchArt(context, value) {
             let result = await request.searchArt(value)
             return result
         },
+        // 标签的增删改
         async addTag(context, value) {
             let result = await request.addTag(value)
             return result
@@ -249,7 +261,7 @@ const blogAbout = {
             let result = await request.updateTag(value)
             return result
         },
-
+        // 音乐接口
         async getSongsUrl(context, value) {
             let result = await music_requests.getSongsUrl(value)
             return result
@@ -334,6 +346,7 @@ const blogAbout = {
             state.blogList = value
         },
         INSERT_BLOGLIST(state, value) {
+            console.log("已加载博客---", value);
             state.blogList.push(...value)
         },
         SET_DRAFT(state, value) {
@@ -351,17 +364,21 @@ const blogAbout = {
         SET_TOTAL(state, value) {
             state.total = value
         },
+        SET_COUNT(state, value) {
+            state.count = value
+        },
     },
     state: {
-        total: 0,
-        tagList: [],
-        tags_idToName: {},
-        tags_nameToId: {},
-        blogList: [],
-        userDraft: {},
-        comments: [],
+        count: 0, // 无限滚动的计数
+        total: 0, // 后台返回的文章总数
+        tagList: [], // 标签列表
+        tags_idToName: {}, // 标签id-->name的字典
+        tags_nameToId: {}, // 标签name-->id的字典
+        blogList: [], // 文章列表
+        userDraft: {}, // 草稿
+        comments: [], // 评论列表
         commentsCopy: [],
-        mode: 'dark',
+        mode: 'dark', // 昼夜模式
 
     }
 }

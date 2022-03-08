@@ -32,6 +32,7 @@
         :comm_box_key="comm_box_key"
         :blog_id="blog_id"
         :blog_title="blog_title"
+        :blog_commentable="blog_commentable"
       />
     </div>
   </div>
@@ -42,7 +43,7 @@ import UserCommentCard from "./UserCommentCard.vue";
 import UserCommSend from "./UserCommSend.vue";
 export default {
   name: "UserFirstComm",
-  props: ["ele", "blog_id", "blog_title"],
+  props: ["ele", "blog_id", "blog_title", "blog_commentable"],
   components: { UserCommentCard, UserCommSend },
   data() {
     return {

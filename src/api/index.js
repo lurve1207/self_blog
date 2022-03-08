@@ -1,40 +1,13 @@
 import axios from 'axios'
 import Qs from 'qs'
-import nprogress from 'nprogress'
-import 'nprogress/nprogress.css'
-
 
 const requests = axios.create({
-    // baseURL: "http://8.134.52.212:3000",
-    baseURL: "http://127.0.0.1:8080/server",
+    baseURL: "http://8.134.52.212:3000",
+    // baseURL: "http://127.0.0.1:8080/server",
     // baseURL: "http://127.0.0.1:8080/local",
-
-
     timeout: 5000
 })
 
-
-
-// 请求拦截器
-requests.interceptors.request.use(config => {
-    // console.log('我是请求拦截器1');
-    // 配置请求头...
-    nprogress.start()
-    return config
-}, error => {
-    return Promise.reject(error)
-})
-
-
-// 响应拦截器
-requests.interceptors.response.use(response => {
-    // console.log('我是响应拦截器1');
-    // 可进行数据处理...
-    nprogress.done()
-    return response
-}, (error) => {
-    return Promise.reject(error)
-})
 
 
 // 1.文章

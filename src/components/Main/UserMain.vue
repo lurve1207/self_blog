@@ -36,8 +36,7 @@ export default {
         idsArr.push(element.id);
       });
       let ids = idsArr.join(",");
-      console.log(ids, "============歌曲ids");
-      // let id = songs.data.result[0].id;
+      // console.log(ids, "============歌曲ids");
 
       // 获取详情集合
       let songDetails = await this.$store.dispatch("getSongDetail", ids);
@@ -48,11 +47,10 @@ export default {
         );
       songDetails.data.songs.forEach(async (ele, index) => {
         let songLyric = await this.$store.dispatch("getSongLyric", ele.id);
-        if (songLyric.data.code == 200)
-          console.log("-----成功加载歌曲歌词-----");
+        if (songLyric.data.code == 200) console.log("-----成功加载歌词-----");
         let songUrl = await this.$store.dispatch("getSongsUrl", ele.id);
         if (songUrl.data.code == 200)
-          console.log("-----成功加载该歌曲的url-----");
+          console.log("-----成功加载该歌曲url-----");
         let songInfo = {
           id: ele.id,
           name: ele.name,
@@ -74,14 +72,20 @@ export default {
         this.$refs.aplayer.currentMusic.id
       );
       if (songUrl.data.code == 200)
-        console.log("-----重新+++成功加载该歌曲歌曲url-----");
+        console.log("-----重新+++成功加载该歌曲url-----");
+      let songLyric = await this.$store.dispatch(
+        "getSongLyric",
+        this.$refs.aplayer.currentMusic.id
+      );
+      if (songLyric.data.code == 200)
+        console.log("-----重新+++成功加载歌词-----");
       this.audio.forEach((ele, index) => {
         if (ele.id == songUrl.data.data[0].id) {
           this.audio[index].url = songUrl.data.data[0].url;
+          this.audio[index].lrc = songLyric.data.lrc.lyric;
+          this.$refs.aplayer.switch(this.$refs.aplayer.currentMusic.name);
         }
       });
-
-      this.$refs.aplayer.switch(this.$refs.aplayer.currentMusic.name);
     },
   },
 };

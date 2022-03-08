@@ -83,13 +83,6 @@ let router = new VueRouter({
                 showFooter: true,
             }
         },
-        // {
-        //     path: '/music',
-        //     component: UserMusic,
-        //     meta: {
-        //         showFooter: false,   
-        //     }
-        // },
         {
             path: '/links',
             component: UserLinks,
@@ -97,14 +90,6 @@ let router = new VueRouter({
                 showFooter: false,
             }
         },
-        // {
-        //     name: 'search',
-        //     path: '/search/:param?',
-        //     component: UserSearch,
-        //     meta: {
-        //         showFooter: true,
-        //     }
-        // },
         {
             path: '/login',
             component: UserLogin,

@@ -1,5 +1,5 @@
 <template>
-  <a :href="link.link">
+  <a :href="link.link" target="_blank">
     <div
       class="cardBox"
       :class="$store.state.blogAbout.mode == 'dark' ? 'dark-sec' : 'light-sec'"
@@ -30,6 +30,11 @@ a {
     margin: 10px auto 5px;
     width: 400px;
     height: 90px;
+
+    &:hover {
+      box-shadow: 0 3px 12px 0 rgb(0 0 0 / 10%);
+    }
+
     .pic {
       float: left;
       width: 70px;

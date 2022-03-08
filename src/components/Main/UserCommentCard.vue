@@ -105,7 +105,8 @@ export default {
     async thumbsUp() {
       if (this.$store.state.userAbout.isLogin !== true) {
         this.$message.info("需要登录才能赞赏哟！");
-      } else {
+      } 
+      else {
         let result = await this.$store.dispatch("likeComment", this.comm.id);
         if (result.data.status == 0) {
           this.thumbsFlag = result.data.data.is_like == 1 ? true : false;

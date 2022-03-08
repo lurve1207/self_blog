@@ -70,6 +70,8 @@
           </div>
         </transition>
       </el-col>
+
+      <el-backtop></el-backtop>
     </el-row>
   </div>
 </template>
@@ -108,7 +110,6 @@ export default {
   methods: {
     async init() {
       await this.$store.dispatch("getTagList");
-      console.log("重新初始化");
       let tag_id = this.$route.query.tag_id
         ? this.$route.query.tag_id
         : this.currentTag;

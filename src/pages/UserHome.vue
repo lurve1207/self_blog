@@ -17,14 +17,10 @@
         :sm="{ span: 18, offset: 3 }"
         :xs="{ span: 22, offset: 1 }"
       >
-        <h3>购买服务器</h3>
-        <h3>域名注册与解析，备案</h3>
-        <h3>上传github</h3>
-        <h3>深度学习</h3>
+        <!-- <h3>深度学习</h3>
         <h3>axios源码解析</h3>
         <h3>webpack自定义</h3>
-        <h3>git常用指令</h3>
-        <h3>vue3</h3>
+        <h3>vue3</h3> -->
         <el-row>
           <!-- 左侧博客卡片列表 -->
           <el-col
@@ -128,7 +124,10 @@
                   <i class="iconfont icon-wechat-fill" @click="openWechat"></i>
                   <i class="iconfont icon-email-fill" @click="openEmail"></i>
                   <i>
-                    <a href="https://github.com/lurve1207">
+                    <a
+                      href="https://github.com/lurve1207/self_blog"
+                      target="_blank"
+                    >
                       <i class="iconfont icon-github-fill"></i>
                     </a>
                   </i>
@@ -185,23 +184,24 @@ export default {
   name: "UserHome",
   components: { UserCarousel },
   data() {
-    return { tagListCopy: [], count: 10, loading: false };
+    return { tagListCopy: [], loading: false, firstTime: true };
   },
   computed: {
     ...mapState({
+      count: (state) => state.blogAbout.count,
       total: (state) => state.blogAbout.total,
       showBlogList: (state) => state.blogAbout.blogList,
       tagList: (state) => state.blogAbout.tagList,
     }),
     noMore() {
-      return this.count >= this.total;
+      return this.showBlogList.length >= this.total;
     },
     disabled() {
       return this.loading || this.noMore;
     },
   },
   mounted() {
-    // this.$store.commit("EMPTY_BLOGLIST");
+    this.load();
   },
   watch: {
     tagList: {
@@ -246,25 +246,34 @@ export default {
     },
     async load() {
       this.loading = true;
-      console.log("loading......");
+      console.log("loading....at home..");
       // 首次加载时，会进行loadmore，判断 showBlogList 是否为空
       // 如果为空进行首次加载，每次多加载几条
       let loadConfig;
-      if (this.showBlogList.length === 0) {
-        loadConfig = { limit: this.count, offset: 0 };
-      } else {
-        loadConfig = { limit: 5, offset: this.count };
-        this.count += 5;
-      }
-      let result = await this.$store.dispatch("getBlogList", loadConfig);
-      if (loadConfig.offset === 0) {
-        console.log(result, "==========");
+      if (this.firstTime == true) {
+        console.log("第一次加载+++++++----------++++++++++");
+        loadConfig = { limit: 10, offset: 0 };
+        let result = await this.$store.dispatch("getBlogList", loadConfig);
         if (result.total !== 0 && this.total !== result.total) {
+          console.log("======已加载最新博客======");
+          this.$store.commit("SET_TOTAL", result.total);
+          this.$store.commit("SET_COUNT", 10);
           this.$store.commit("EMPTY_BLOGLIST");
           this.$store.commit("SET_BLOGLIST", result.arts);
+        } else {
+          console.log("======已保持同步博客======");
         }
-        this.$store.commit("SET_TOTAL", result.total);
+        this.firstTime = false;
+      } else if (this.total > 0 && this.noMore) {
+        this.loading = false;
+        return console.log("~~~~~~~已全部加载~~~~~~");
+      } else {
+        loadConfig = { limit: 5, offset: this.count };
+        this.$store.commit("SET_COUNT", this.count + 5);
+        let result = await this.$store.dispatch("getBlogList", loadConfig);
+        this.$store.commit("INSERT_BLOGLIST", result);
       }
+
       this.loading = false;
     },
   },
@@ -278,7 +287,7 @@ export default {
   color: #fff;
   .intro {
     background-color: rgba(0, 0, 0, 0);
-    margin: 215px 0;
+    margin: 205px 0;
     text-align: center;
     > div {
       letter-spacing: 5px;

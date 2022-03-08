@@ -45,6 +45,7 @@
             <UserCommSend
               :blog_id="currentBlog.id"
               :blog_title="currentBlog.title"
+              :blog_commentable="currentBlog.commentable"
               style="display: block"
             />
             <UserFirstComm
@@ -53,6 +54,7 @@
               :ele="ele"
               :blog_id="currentBlog.id"
               :blog_title="currentBlog.title"
+              :blog_commentable="currentBlog.commentable"
             />
           </div>
         </el-col>
@@ -144,6 +146,8 @@ export default {
     async thumbsUp() {
       if (this.$store.state.userAbout.isLogin !== true) {
         this.$message.info("需要登录才能赞赏哟！");
+      } else if (this.currentBlog.appreciationable == 0) {
+        this.$message.info("文章主人未开启赞赏权限！");
       } else {
         let result = await this.$store.dispatch(
           "likeArticle",
