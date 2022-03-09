@@ -124,10 +124,7 @@
                   <i class="iconfont icon-wechat-fill" @click="openWechat"></i>
                   <i class="iconfont icon-email-fill" @click="openEmail"></i>
                   <i>
-                    <a
-                      href="https://gitee.com/lurve/self_blog.git"
-                      target="_blank"
-                    >
+                    <a href="https://gitee.com/lurve/projects" target="_blank">
                       <i class="iconfont icon-gitee2"></i>
                     </a>
                   </i>
