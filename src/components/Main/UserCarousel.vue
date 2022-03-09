@@ -7,7 +7,10 @@
     trigger="click"
   >
     <el-carousel-item :key="item.title" v-for="item in carouselInfo">
-      <div class="card-carousel-item">
+      <div
+        class="card-carousel-item"
+        :style="{ background: `url(${item.url})` }"
+      >
         <div>
           <h2>{{ item.title }}</h2>
           <p>{{ item.content }}</p>
@@ -26,15 +29,18 @@ export default {
         {
           title: "日记",
           content: "做一个热爱生活的人，把生活记录下来。",
+          url: "http://cdn.yuguo.work/carousel1.webp",
         },
         {
           title: "旅行",
           content:
             "我认为旅行是从大自然学习的最佳方式。走遍世界，这是我最大的梦想。",
+          url: "http://cdn.yuguo.work/carousel2.webp",
         },
         {
           title: "好好打代码",
           content: "每天都要学习！",
+          url: "http://cdn.yuguo.work/carousel3.webp",
         },
       ],
     };
@@ -66,18 +72,6 @@ export default {
         font-size: 14px;
       }
     }
-  }
-
-  .el-carousel__item:nth-child(1) .card-carousel-item {
-    background-image: url("../../assets/images/carousel1.webp") !important;
-  }
-
-  .el-carousel__item:nth-child(2) .card-carousel-item {
-    background-image: url("../../assets/images/carousel2.webp") !important;
-  }
-
-  .el-carousel__item:nth-child(3) .card-carousel-item {
-    background-image: url("../../assets/images/carousel3.webp") !important;
   }
 }
 </style>

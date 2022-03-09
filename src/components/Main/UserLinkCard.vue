@@ -24,11 +24,13 @@ export default {
 
 <style scoped lang="less">
 a {
+  max-width: 100%;
+  min-width: 40%;
   .cardBox {
     border-radius: 5px;
     padding: 10px;
     margin: 10px auto 5px;
-    width: 400px;
+    max-width: 100%;
     height: 90px;
 
     &:hover {

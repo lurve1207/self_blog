@@ -2,7 +2,7 @@
   <div
     class="summary"
     :class="$store.state.blogAbout.mode == 'dark' ? 'dark-sec' : 'light-sec'"
-    :style="{ height: innerHeight + 'px' }"
+    :style="{ minHeight: innerHeight + 'px' }"
   >
     <transition appear>
       <el-row
@@ -94,8 +94,7 @@ export default {
       reverse: false,
       showList: [],
       pageSize: 7,
-      innerHeight: window.innerHeight,
-
+      innerHeight: document.body.clientHeight,
       total: 0,
     };
   },
@@ -131,6 +130,7 @@ export default {
 
 <style scoped lang="less">
 .summary {
+  height: 100%;
   padding-top: 20px;
   // color: white !important;
   .el-radio {

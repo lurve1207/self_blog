@@ -31,7 +31,8 @@ module.exports = {
                 vue: 'Vue',
                 'vue-router': 'VueRouter',
                 axios: 'axios',
-                nprogress: 'NProgress'
+                nprogress: 'NProgress',
+                
                 // 'mavon-editor': 'mavon-editor' // 配置有问题，不知道如何修改
             })
 

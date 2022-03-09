@@ -42,26 +42,20 @@
             @click="$router.push({ path: '/login' })"
             class="log_res"
           >
-            <i>登录/注册</i>
+            <i class="hidden-xs-only">登录/注册</i>
+            <i class="hidden-sm-and-up">我的</i>
           </el-menu-item>
           <el-menu-item index="5" @click="$router.push({ path: '/links' })">
-            <i class="el-icon-link"></i><i>友链</i>
+            <i class="el-icon-link hidden-xs-only"></i><i>友链</i>
           </el-menu-item>
-          <!-- <el-menu-item
-          index="4"
-          @click="$router.push({ path: '/music' })"
-          class="hidden-xs-only"
-        >
-          音乐盒
-        </el-menu-item> -->
           <el-menu-item index="3" @click="$router.push({ path: '/summary' })">
-            <i class="el-icon-files"></i><i>归档</i>
+            <i class="el-icon-files hidden-xs-only"></i><i>归档</i>
           </el-menu-item>
           <el-menu-item index="2" @click="$router.push({ path: '/tags' })">
-            <i class="el-icon-price-tag"></i><i>标签</i>
+            <i class="el-icon-price-tag hidden-xs-only"></i><i>标签</i>
           </el-menu-item>
           <el-menu-item index="1" @click="$router.push({ path: '/home' })">
-            <i class="el-icon-s-home"></i><i>首页</i>
+            <i class="el-icon-s-home hidden-xs-only"></i><i>首页</i>
           </el-menu-item>
           <el-autocomplete
             class="inline-input hidden-sm-and-down"

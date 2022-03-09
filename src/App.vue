@@ -1,8 +1,12 @@
 <template>
   <div
     class="banner-wrap"
-    :class="$store.state.blogAbout.mode == 'dark' ? 'notHome' : ''"
-    :style="$route.path.indexOf('home') == -1 ? { height: `60px` } : {}"
+    :style="
+      $store.state.blogAbout.mode == 'dark'
+        ? { background: `url(http://cdn.yuguo.work/${bg[0]})` }
+        : { background: `url(http://cdn.yuguo.work/${bg[1]})` }
+    "
+    :class="$route.path.indexOf('home') == -1 ? 'notHome' : ''"
   >
     <noscript>
       <strong>出问题了</strong>
@@ -23,6 +27,9 @@ import { getUserinfo } from "./api";
 export default {
   name: "App",
   components: { UserHeader, UserMain, UserFooter },
+  data() {
+    return { bg: ["bg3.jpg", "bg6.jpg"] };
+  },
   methods: {
     async init() {
       if (localStorage.getItem("blog_token")) {
@@ -59,8 +66,6 @@ export default {
 .banner-wrap {
   width: 100%;
   height: 600px;
-  /* background: url("./assets/images/wallhaven-dpxeem.jpg") no-repeat; */
-  background: url("./assets/images/bg6.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   animation: fadeInDown;
@@ -68,7 +73,7 @@ export default {
 }
 
 .notHome {
-  background: url("./assets/images/bg3.jpg");
+  height: 60px;
 }
 
 @media screen and (max-width: 767px) {

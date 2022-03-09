@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "23185109",
+      "name": "gitee2",
+      "font_class": "gitee2",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "2565244",
+      "name": "thumbs",
+      "font_class": "thumbs",
+      "unicode": "e81c",
+      "unicode_decimal": 59420
+    },
+    {
+      "icon_id": "372264",
+      "name": "cc-thumbs-up",
+      "font_class": "cc-thumbs-up",
+      "unicode": "e6a8",
+      "unicode_decimal": 59048
+    },
+    {
       "icon_id": "4936955",
       "name": "alipay",
       "font_class": "alipay",

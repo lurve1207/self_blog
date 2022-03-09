@@ -1,5 +1,9 @@
 <template>
-  <div class="register">
+  <div
+    class="register"
+    :class="$store.state.blogAbout.mode == 'dark' ? 'dark-sec' : 'light-sec'"
+    :style="{ minHeight: innerHeight + 'px' }"
+  >
     <el-row>
       <el-col
         :md="{ span: 8, offset: 8 }"
@@ -69,6 +73,11 @@ import loading from "../../components/mixin/loading";
 export default {
   name: "UserRegister",
   mixins: [loading],
+  data() {
+    return {
+      innerHeight: document.body.clientHeight,
+    };
+  },
   methods: {
     submitForm() {
       this.$refs["ruleForm"].validate(async (valid) => {

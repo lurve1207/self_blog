@@ -15,7 +15,6 @@ export default {
 <style scoped lang='less'>
 .footer {
   text-align: center;
-  background-color: #171d20;
-  padding-bottom: 15px;
+  padding: 5px 10px;
 }
 </style>

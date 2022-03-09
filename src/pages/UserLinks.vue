@@ -1,5 +1,9 @@
 <template>
-  <div class="links" :class="$store.state.blogAbout.mode">
+  <div
+    class="links"
+    :class="$store.state.blogAbout.mode"
+    :style="{ minHeight: innerHeight + 'px' }"
+  >
     <el-row>
       <el-col
         :md="{ span: 16, offset: 4 }"
@@ -166,6 +170,7 @@ export default {
         ],
       },
       msg: "",
+      innerHeight: document.body.clientHeight,
     };
   },
   computed: {
@@ -214,6 +219,7 @@ export default {
 
 <style scoped lang="less">
 .links {
+  height: 100%;
   padding-top: 20px;
   .el-card {
     // background-color: #2f3133;

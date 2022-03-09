@@ -1,5 +1,5 @@
 <template>
-  <div class="eachblog">
+  <div class="eachblog" :style="{ minHeight: innerHeight + 'px' }">
     <transition>
       <el-row class="animate__animated animate__fadeInLeftBig">
         <el-col
@@ -31,7 +31,14 @@
             <h2>{{ currentBlog.title }}</h2>
             <div v-html="currentBlog.content_html"></div>
           </div>
+        </el-col>
 
+        <el-col
+          class="col typo"
+          :md="{ span: 16, offset: 4 }"
+          :sm="{ span: 18, offset: 3 }"
+          :xs="{ span: 22, offset: 1 }"
+        >
           <div class="comment">
             <div class="comm_header">
               <span class="comm_count"> {{ allComments.length }}</span>
@@ -96,6 +103,7 @@ export default {
       commentsCopy: [],
       comm_content: "", // 评论框输入内容
       activeName: "likes", // 评论排序标准
+      innerHeight: document.body.clientHeight,
     };
   },
   mounted() {
@@ -319,8 +327,10 @@ export default {
 @import "../assets/css/typo.css";
 
 .eachblog {
+  height: 100%;
   padding-top: 20px;
   .col {
+    margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -349,7 +359,6 @@ export default {
 
     .body {
       padding: 14px;
-      border-bottom: 1px solid #ccc;
     }
 
     .comment {

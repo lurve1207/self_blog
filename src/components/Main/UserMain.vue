@@ -7,6 +7,7 @@
       :fixed="true"
       :volume="0.1"
       @waiting="handleEvent"
+      class="hidden-md-and-down"
     />
     <router-view :key="$route.fullPath"></router-view>
   </div>

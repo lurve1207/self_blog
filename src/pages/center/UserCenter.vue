@@ -63,11 +63,12 @@
           index="3"
           @click="$router.push({ path: '/center/tagManage' })"
         >
-          <i class="el-icon-collection-tag"></i>标签管理
+          <i class="el-icon-collection-tag"></i>
+          <i class="hidden-xs-only">标签管理</i>
         </el-menu-item>
         <el-menu-item index="4">
           <i class="el-icon-star-on"></i>
-          <span slot="title">热爱生活</span>
+          <span slot="title"> <i class="hidden-xs-only">热爱生活</i></span>
         </el-menu-item>
       </el-menu>
     </el-aside>

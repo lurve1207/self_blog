@@ -1,5 +1,9 @@
 <template>
-  <div class="login">
+  <div
+    class="login"
+    :class="$store.state.blogAbout.mode == 'dark' ? 'dark-sec' : 'light-sec'"
+    :style="{ minHeight: innerHeight + 'px' }"
+  >
     <el-row>
       <el-col
         :md="{ span: 8, offset: 8 }"
@@ -78,6 +82,7 @@ export default {
       identifyCode: "",
       identifyCodes: "1234567890",
       checkCode: "",
+      innerHeight: document.body.clientHeight,
     };
   },
   mounted() {
@@ -166,14 +171,16 @@ export default {
 };
 </script>
 
-<style scoped>
-.login_box {
-  height: 300px;
-  margin: 100px auto;
-}
+<style scoped lang="less">
+.login {
+  .login_box {
+    height: 300px;
+    margin: 100px auto;
+  }
 
-.codeArea {
-  text-align: center;
-  padding: 0;
+  .codeArea {
+    text-align: center;
+    padding: 0;
+  }
 }
 </style>

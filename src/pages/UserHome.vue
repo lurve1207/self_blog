@@ -125,10 +125,10 @@
                   <i class="iconfont icon-email-fill" @click="openEmail"></i>
                   <i>
                     <a
-                      href="https://github.com/lurve1207/self_blog"
+                      href="https://gitee.com/lurve/self_blog.git"
                       target="_blank"
                     >
-                      <i class="iconfont icon-github-fill"></i>
+                      <i class="iconfont icon-gitee2"></i>
                     </a>
                   </i>
                 </div>
@@ -282,6 +282,7 @@ export default {
 
 <style scpoed lang="less">
 .home {
+  height: 100%;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0);
   color: #fff;

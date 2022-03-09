@@ -1,31 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// 引入组件
-import UserHome from '../pages/UserHome'
-import UserBlogTags from '../pages/UserBlogTags'
-import UserSummary from '../pages/UserSummary'
-import UserBlog from '../pages/UserBlog'
-import UserMusic from '../pages/UserMusic'
-import UserLinks from '../pages/UserLinks'
-import UserSearch from '../pages/UserSearch'
-import UserLogin from '../pages/account/UserLogin'
-import UserRegister from '../pages/account/UserRegister'
-
-import UserCenter from '../pages/center/UserCenter'
-import UserUserinfo from '../pages/center/user/UserUserinfo'
-import UserResetPwd from '../pages/center/user/UserResetPwd'
-import UserBlogs from '../pages/center/blogManage/UserBlogs'
-import UserPost from '../pages/center/blogManage/UserPost'
-import UserLikes from '../pages/center/blogManage/UserLikes'
-import UserComments from '../pages/center/blogManage/UserComments'
-import UserTagManage from '../pages/center/tagManage/UserTagManage.vue'
-
-
 // 引入store
 import store from '../store/index'
 
+// 引入组件
+// import UserHome from '../pages/UserHome'
+// import UserBlogTags from '../pages/UserBlogTags'
+// import UserSummary from '../pages/UserSummary'
+// import UserBlog from '../pages/UserBlog'
+// import UserLinks from '../pages/UserLinks'
+// import UserLogin from '../pages/account/UserLogin'
+// import UserRegister from '../pages/account/UserRegister'
 
+// import UserCenter from '../pages/center/UserCenter'
+// import UserUserinfo from '../pages/center/user/UserUserinfo'
+// import UserResetPwd from '../pages/center/user/UserResetPwd'
+// import UserBlogs from '../pages/center/blogManage/UserBlogs'
+// import UserPost from '../pages/center/blogManage/UserPost'
+// import UserLikes from '../pages/center/blogManage/UserLikes'
+// import UserComments from '../pages/center/blogManage/UserComments'
+// import UserTagManage from '../pages/center/tagManage/UserTagManage'
+
+const UserHome = () => import('../pages/UserHome.vue')
+const UserBlogTags = () => import('../pages/UserBlogTags.vue')
+const UserSummary = () => import('../pages/UserSummary.vue')
+const UserBlog = () => import('../pages/UserBlog.vue')
+const UserLinks = () => import('../pages/UserLinks.vue')
+const UserLogin = () => import('../pages/account/UserLogin.vue')
+const UserRegister = () => import('../pages/account/UserRegister.vue')
+
+const UserCenter = () => import('../pages/center/UserCenter.vue')
+const UserUserinfo = () => import('../pages/center/user/UserUserinfo.vue')
+const UserResetPwd = () => import('../pages/center/user/UserResetPwd.vue')
+const UserBlogs = () => import('../pages/center/blogManage/UserBlogs.vue')
+const UserPost = () => import('../pages/center/blogManage/UserPost.vue')
+const UserLikes = () => import('../pages/center/blogManage/UserLikes.vue')
+const UserComments = () => import('../pages/center/blogManage/UserComments.vue')
+const UserTagManage = () => import('../pages/center/tagManage/UserTagManage.vue')
 
 
 
@@ -87,7 +99,7 @@ let router = new VueRouter({
             path: '/links',
             component: UserLinks,
             meta: {
-                showFooter: false,
+                showFooter: true,
             }
         },
         {

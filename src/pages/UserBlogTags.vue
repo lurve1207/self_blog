@@ -1,5 +1,9 @@
 <template>
-  <div class="blogtags" :class="$store.state.blogAbout.mode">
+  <div
+    class="blogtags"
+    :class="$store.state.blogAbout.mode"
+    :style="{ minHeight: innerHeight + 'px' }"
+  >
     <el-row class="row">
       <el-col
         :md="{ span: 16, offset: 4 }"
@@ -90,6 +94,8 @@ export default {
       offset: 4,
       loading: false,
       total: 0,
+
+      innerHeight: document.body.clientHeight,
     };
   },
   components: { UserBlogCard },
@@ -151,7 +157,7 @@ export default {
 
 <style lang='less' scoped >
 .blogtags {
-  min-height: 700px;
+  height: 100%;
   .row {
     padding-top: 20px;
     .tags {
